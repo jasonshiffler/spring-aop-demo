@@ -41,7 +41,7 @@ public class AccountDAO {
         List<Account> myAccounts = new ArrayList<>();
 
         if (true)
-            throw new RuntimeException("Exeception!");
+            throw new RuntimeException("Purposely generated Exception!");
 
         return myAccounts;
     }
