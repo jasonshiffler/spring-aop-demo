@@ -1,7 +1,7 @@
 This Spring Boot project is a demonstration of the Aspect Orientated Programming (AOP) capabilities in the Spring
 framework.
 
-The following advices are demonstrated:
+The following advice annotations are demonstrated:
 - @Before
 - @After
 - @AfterThrowing
