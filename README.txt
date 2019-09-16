@@ -1,5 +1,6 @@
 This Spring Boot project is a demonstration of the Aspect Orientated Programming (AOP) capabilities in the Spring
-framework.
+framework. AOP is desirable because it allows common functionality to deployed throughout an application without having
+to modify methods across the app. You may wish to comment out certain Advice methods to showcase specific functionality.
 
 The following advice annotations are demonstrated:
 - @Before

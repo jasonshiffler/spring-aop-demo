@@ -18,15 +18,15 @@ public class AccountDAO {
 
     Logger logger = LoggerFactory.getLogger(AccountDAO.class);
 
-    public List<Account> findAccounts(){
+    public List<Account> findAccounts() {
 
         List<Account> myAccounts = new ArrayList<>();
 
         //create sample accounts
 
-        Account account1 = new Account("Bill","Gold");
-        Account account2 = new Account("Steve","Bronze");
-        Account account3 = new Account("Vinay","Silver");
+        Account account1 = new Account("Bill", "Gold");
+        Account account2 = new Account("Steve", "Bronze");
+        Account account3 = new Account("Vinay", "Silver");
 
         myAccounts.add(account1);
         myAccounts.add(account2);
@@ -36,66 +36,66 @@ public class AccountDAO {
     }
 
     //We're using this method to test our @AfterThrowing Advice
-    public List<Account> findAccountsException(){
+    public List<Account> findAccountsException() {
 
         List<Account> myAccounts = new ArrayList<>();
 
-        if(true)
+        if (true)
             throw new RuntimeException("Exeception!");
 
         return myAccounts;
     }
 
     //We're using this method to test our @Around Advice
-    public void addAccountAround(){
+    public void addAccountAround() {
 
-        logger.info(getClass() + "in addAccountAround()");
-        try{
+        logger.info("{} in addAccountAround()", getClass());
+        try {
             sleep(1100);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info(e.toString());
         }
 
     }
 
-    public void addAccountAroundException(){
+    public void addAccountAroundException() {
 
-        logger.info(getClass() + "in addAccountAroundException()");
-        try{
+        logger.info("{} in addAccountAroundException()", getClass());
+        try {
             sleep(1100);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info(e.toString());
         }
         throw new RuntimeException("Exception in addAcountAroundException()");
 
     }
 
-    public void addAccount(String Name){
-        logger.info(getClass() + "in addAccount()");
+    public void addAccount(String Name) {
+        logger.info("{} in addAccount()", getClass());
         this.setName(Name);
     }
 
-    public void deleteAccount(){
-        logger.info(getClass() + "in deleteAccount()");
+    public void deleteAccount() {
+        logger.info("{} in deleteAccount()", getClass());
     }
 
     public String getName() {
-        logger.info(getClass() + "in getName()");
+        logger.info("{} in getName()", getClass());
         return name;
     }
 
     public void setName(String name) {
-        logger.info(getClass() + "in setName()");
+        logger.info(" {} in setName()", getClass());
         this.name = name;
     }
 
     public String getServiceCode() {
-        logger.info(getClass() + "in getServiceCode()");
+        logger.info(" {} in getServiceCode()", getClass());
         return serviceCode;
     }
 
     public void setServiceCode(String serviceCode) {
-        logger.info(getClass() + "in setServiceCode()");
+        logger.info("{} in setServiceCode()", getClass());
         this.serviceCode = serviceCode;
     }
 }
