@@ -1,6 +1,5 @@
 package com.example.springdemo.springaopdemo.aop;
 
-import com.example.springdemo.springaopdemo.SpringAopDemoApplication;
 import com.example.springdemo.springaopdemo.entities.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -36,7 +35,7 @@ public class DemoLoggingAspect {
         MethodSignature methSig = (MethodSignature) theJoinPoint.getSignature();
 
         //Display the method signature
-        logger.info("Method: " + methSig);
+        logger.info("Method: {}" , methSig);
 
         //Display the method arguments
         Object[] args = theJoinPoint.getArgs();
@@ -44,7 +43,7 @@ public class DemoLoggingAspect {
         int i = 0;
         for(Object tempArg: args){
             tempArg.getClass();
-            logger.info("Argument " + i + " is " + tempArg);
+            logger.info("Argument {} is {} " ,i, tempArg);
             i++;
         }
     }
@@ -73,7 +72,10 @@ public class DemoLoggingAspect {
     //The Pointcut annotation allows us to reuse a matching expression in multiple places so we don't have to
     //copy it.
     @Pointcut("execution (public void delete**() )")
-    public void deletePointCut(){ }
+    public void deletePointCut(){
+        //Just being used to define the pointcut for other other annotations like @Before to use
+
+    }
 
     //We're reusing the pointcut expression that was declared above.
     @Before("deletePointCut()")
@@ -91,7 +93,7 @@ public class DemoLoggingAspect {
         //Turn the method signature into a string so we can print it.
         String method = theJoinPoint.getSignature().toString();
 
-        logger.info("============>>>Executing @AfterReturning on method: " + method + "\n");
+        logger.info("============>>>Executing @AfterReturning on method: {}", method );
 
 
         //It is possible to modify the returned value that has been intercepted but this should be used with caution
@@ -108,8 +110,8 @@ public class DemoLoggingAspect {
 
         MethodSignature theMethod = (MethodSignature)theJoinPoint.getSignature();
         //Display the method signature
-        logger.info("===============>Executing @AfterThrowing on method: " + theMethod);
-        logger.info("===============>The Exception is " + except);
+        logger.info("===============>Executing @AfterThrowing on method: {} ", theMethod);
+        logger.info("===============>The Exception is ", except);
     }
 
     //@After advice runs regardless if the method runs successfully or not, it does not have access to any exceptions
@@ -118,7 +120,7 @@ public class DemoLoggingAspect {
 
         String method = theJoinPoint.getSignature().toShortString();
 
-        logger.info("&&&&&&&&&Executing @After advice on method: " + method +   " &&&&&&&");
+        logger.info("&&&&&&&&&Executing @After advice on method: {} &&&&&&&",method);
 
     }
 
@@ -130,7 +132,7 @@ public class DemoLoggingAspect {
         Object result = null;
 
         String method = theProceedingJoinPoint.getSignature().toShortString();
-        logger.info("^^^^^^^^^^^Executing @Around advice on method: " + method +   " ^^^^^^^^^^^^^");
+        logger.info("^^^^^^^^^^^Executing @Around advice on method: {} ^^^^^^^^^^^^^", method);
 
         long begin = System.currentTimeMillis();
 
@@ -139,7 +141,7 @@ public class DemoLoggingAspect {
         try {
             result = theProceedingJoinPoint.proceed();
         } catch (Exception e) {
-              logger.warn("@Around advice problem " + e.toString());
+              logger.warn("@Around advice problem {}" , e);
               // throw e; we can rethrow the exception if we want the main program to handle it.
         }
 
@@ -147,7 +149,7 @@ public class DemoLoggingAspect {
 
         long duration = end - begin;
 
-        logger.info("==========> Duration: " + duration/ 1000.0 + " seconds");
+        logger.info("==========> Duration: {}  seconds", duration/ 1000.0 );
 
         return result;
     }

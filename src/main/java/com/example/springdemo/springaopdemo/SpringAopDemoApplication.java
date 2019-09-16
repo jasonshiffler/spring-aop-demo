@@ -1,6 +1,5 @@
 package com.example.springdemo.springaopdemo;
 
-import com.example.springdemo.springaopdemo.aop.DemoLoggingAspect;
 import com.example.springdemo.springaopdemo.dao.AccountDAO;
 import com.example.springdemo.springaopdemo.dao.MembershipDAO;
 import org.slf4j.Logger;
@@ -14,51 +13,50 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class SpringAopDemoApplication {
 
-	static Logger logger = LoggerFactory.getLogger(SpringAopDemoApplication.class);
-	
-	public static void main(String[] args) {
+    static Logger logger = LoggerFactory.getLogger(SpringAopDemoApplication.class);
 
-		//Grab the application context
+    public static void main(String[] args) {
 
-		ApplicationContext ctx = SpringApplication.run(SpringAopDemoApplication.class, args);
+        //Grab the application context
 
-		//Retrieve the DAO beans
+        ApplicationContext ctx = SpringApplication.run(SpringAopDemoApplication.class, args);
 
-		AccountDAO aDao = ctx.getBean("accountDAO", AccountDAO.class);
-		MembershipDAO mDao = ctx.getBean("membershipDAO", MembershipDAO.class);
+        //Retrieve the DAO beans
 
+        AccountDAO aDao = ctx.getBean("accountDAO", AccountDAO.class);
+        MembershipDAO mDao = ctx.getBean("membershipDAO", MembershipDAO.class);
 
-		//Call the methods so we can see the AOP methods execute.
+        //Call the methods so we can see the AOP methods execute.
 
-		aDao.setServiceCode("123456");
+        aDao.setServiceCode("123456");
 
-		aDao.addAccount("Bob");
-		mDao.addAccount();
-		mDao.addMember();
-		aDao.deleteAccount();
+        aDao.addAccount("Bob");
+        mDao.addAccount();
+        mDao.addMember();
+        aDao.deleteAccount();
 
-		logger.info("*********************Around Tester***********************");
-		logger.info("*********************Around Tester***********************");
+        logger.info("*********************Around Tester***********************");
+        logger.info("*********************Around Tester***********************");
 
-		aDao.addAccountAround();
+        aDao.addAccountAround();
 
-		logger.info("*********************Around Exception Tester***********************");
-		logger.info("*********************Around Exception Tester***********************");
+        logger.info("*********************Around Exception Tester***********************");
+        logger.info("*********************Around Exception Tester***********************");
 
-		aDao.addAccountAroundException();
-
-
-		logger.info("*********************Call Find Accounts***********************");
-		logger.info("*********************Call Find Accounts***********************");
-
-		aDao.findAccounts();
-
-		logger.info("*********************AfterThrowing Demo***********************");
-		logger.info("*********************AfterThrowing Demo***********************");
-
-		aDao.findAccountsException();
+        aDao.addAccountAroundException();
 
 
-	}
+        logger.info("*********************Call Find Accounts***********************");
+        logger.info("*********************Call Find Accounts***********************");
+
+        aDao.findAccounts();
+
+        logger.info("*********************AfterThrowing Demo***********************");
+        logger.info("*********************AfterThrowing Demo***********************");
+
+        aDao.findAccountsException();
+
+
+    }
 
 }

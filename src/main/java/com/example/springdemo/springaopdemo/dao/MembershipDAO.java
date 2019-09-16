@@ -1,17 +1,20 @@
 package com.example.springdemo.springaopdemo.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MembershipDAO {
 
+    Logger logger = LoggerFactory.getLogger(MembershipDAO.class);
 
     public void addAccount(){
-        System.out.println("Adding an Account");
+        logger.info("Adding an Account");
     }
 
     public void addMember(){
-        System.out.println("Adding a Member");
+        logger.info("Adding a Member");
     }
 
 }

@@ -1,6 +1,8 @@
 package com.example.springdemo.springaopdemo.dao;
 
 import com.example.springdemo.springaopdemo.entities.Account;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class AccountDAO {
     private String name;
     private String serviceCode;
 
+    Logger logger = LoggerFactory.getLogger(AccountDAO.class);
 
     public List<Account> findAccounts(){
 
@@ -46,53 +49,53 @@ public class AccountDAO {
     //We're using this method to test our @Around Advice
     public void addAccountAround(){
 
-        System.out.println(getClass() + "in addAccountAround()");
+        logger.info(getClass() + "in addAccountAround()");
         try{
             sleep(1100);
         }catch (Exception e){
-            System.out.println(e);
+            logger.info(e.toString());
         }
 
     }
 
     public void addAccountAroundException(){
 
-        System.out.println(getClass() + "in addAccountAroundException()");
+        logger.info(getClass() + "in addAccountAroundException()");
         try{
             sleep(1100);
         }catch (Exception e){
-            System.out.println(e);
+            logger.info(e.toString());
         }
         throw new RuntimeException("Exception in addAcountAroundException()");
 
     }
 
     public void addAccount(String Name){
-        System.out.println(getClass() + "in addAccount()");
+        logger.info(getClass() + "in addAccount()");
         this.setName(Name);
     }
 
     public void deleteAccount(){
-        System.out.println(getClass() + "in deleteAccount()");
+        logger.info(getClass() + "in deleteAccount()");
     }
 
     public String getName() {
-        System.out.println(getClass() + "in getName()");
+        logger.info(getClass() + "in getName()");
         return name;
     }
 
     public void setName(String name) {
-        System.out.println(getClass() + "in setName()");
+        logger.info(getClass() + "in setName()");
         this.name = name;
     }
 
     public String getServiceCode() {
-        System.out.println(getClass() + "in getServiceCode()");
+        logger.info(getClass() + "in getServiceCode()");
         return serviceCode;
     }
 
     public void setServiceCode(String serviceCode) {
-        System.out.println(getClass() + "in setServiceCode()");
+        logger.info(getClass() + "in setServiceCode()");
         this.serviceCode = serviceCode;
     }
 }
